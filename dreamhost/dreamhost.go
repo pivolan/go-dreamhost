@@ -42,7 +42,7 @@ func NewClient(apiKey string, httpClient *http.Client) *Client {
 
 // Params specifies the optional parameters to API requests
 type Params struct {
-	apiKey   string `url:"key"`
+	ApiKey   string `url:"key"`
 	Command  string `url:"cmd"`
 	UniqueID string `url:"unique_id"`
 
@@ -81,7 +81,7 @@ func (c *Client) NewRequest(method, cmd string, body interface{}) (*http.Request
 		return nil, fmt.Errorf("An API key must be set to make API requests")
 	}
 
-	params := Params{apiKey: c.apiKey, Command: cmd, Format: "json", UniqueID: newUniqueID()}
+	params := Params{ApiKey: c.apiKey, Command: cmd, Format: "json", UniqueID: newUniqueID()}
 	u, err := addParams(c.URL.String(), params)
 	if err != nil {
 		fmt.Println(fmt.Errorf("Error: %v", err))
